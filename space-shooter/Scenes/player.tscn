@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://wps0hpecyxnr"]
+
+[ext_resource type="Script" uid="uid://cp6c87clwoye2" path="res://Scenes/Player.cs" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://bw8bgweork3xo" path="res://SpaceShooterRedux/PNG/playerShip1_red.png" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://0xn2xp2g6y4o" path="res://SpaceShooterRedux/Bonus/sfx_laser1.ogg" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://cg2g0h4djr3le" path="res://SpaceShooterRedux/Bonus/sfx_shieldDown.ogg" id="4_vgqql"]
+
+[sub_resource type="Gradient" id="Gradient_vgqql"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sppo3"]
+gradient = SubResource("Gradient_vgqql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mrrly"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.01
+gravity = Vector3(0, 100, 0)
+scale_min = 7.8999996
+scale_max = 8.95
+color = Color(0.8980392, 0.16078432, 0.14509805, 1)
+color_ramp = SubResource("GradientTexture1D_sppo3")
+
+[node name="Player" type="CharacterBody2D" unique_id=444783819]
+collision_mask = 6
+script = ExtResource("1_cvnsp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=156489883]
+position = Vector2(0, 39)
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_mrrly")
+
+[node name="PlayerImage" type="Sprite2D" parent="." unique_id=1169280469]
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=716640631]
+polygon = PackedVector2Array(-9, -37, 8, -37, 12, -12, 36, 1, 41, -1, 44, -7, 49, -6, 46, 25, 42, 20, 13, 28, 8, 37, -9, 37, -14, 27, -46, 24, -50, -5, -44, -6, -36, 2, -12, -12)
+
+[node name="LaserStartPosition" type="Marker2D" parent="." unique_id=2139099491]
+position = Vector2(0, -53)
+
+[node name="Cooldown" type="Timer" parent="." unique_id=675605335]
+wait_time = 0.5
+one_shot = true
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="." unique_id=1372782839]
+stream = ExtResource("3_6t5aa")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="." unique_id=1756643700]
+stream = ExtResource("4_vgqql")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2108605059]
+enabled = false
+
+[connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]

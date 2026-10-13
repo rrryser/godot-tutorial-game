@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cyqqgordmh7pa"]
+
+[ext_resource type="Texture2D" uid="uid://v4csf0ur2ebh" path="res://SpaceShooterRedux/PNG/Meteors/meteorBrown_big2.png" id="1_5civa"]
+[ext_resource type="Script" uid="uid://cgnqp8oqyyhb1" path="res://Scenes/Meteor.cs" id="1_wm1ig"]
+[ext_resource type="Texture2D" uid="uid://dg2cxlkets53l" path="res://SpaceShooterRedux/PNG/Meteors/meteorBrown_big1.png" id="2_d1487"]
+[ext_resource type="Texture2D" uid="uid://ctb2wvn0o1h86" path="res://SpaceShooterRedux/PNG/Meteors/meteorBrown_big3.png" id="4_7hap5"]
+[ext_resource type="Texture2D" uid="uid://c38j7ksia1q83" path="res://SpaceShooterRedux/PNG/Meteors/meteorBrown_big4.png" id="5_7xk1x"]
+[ext_resource type="Texture2D" uid="uid://bvpn3po45cbmo" path="res://SpaceShooterRedux/PNG/Meteors/meteorGrey_big1.png" id="6_kgtfb"]
+[ext_resource type="AudioStream" uid="uid://q7lla6lit7vp" path="res://SpaceShooterRedux/Bonus/sfx_zap.ogg" id="7_7hap5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrrly"]
+radius = 48.0
+
+[node name="Meteor" type="Area2D" unique_id=666459205]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_wm1ig")
+sprites = Array[Texture2D]([ExtResource("2_d1487"), ExtResource("1_5civa"), ExtResource("4_7hap5"), ExtResource("5_7xk1x"), ExtResource("6_kgtfb")])
+
+[node name="MeteorImage" type="Sprite2D" parent="." unique_id=1974682676]
+texture = ExtResource("1_5civa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=563476971]
+position = Vector2(-3, -3)
+shape = SubResource("CircleShape2D_mrrly")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=614094740]
+stream = ExtResource("7_7hap5")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

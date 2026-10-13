@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://cbyp1xwa5d3e1"]
+
+[ext_resource type="Texture2D" uid="uid://5podd3rihqgb" path="res://SpaceShooterRedux/Backgrounds/darkPurple.png" id="1_6phgx"]
+[ext_resource type="Script" uid="uid://btgona7qdiylq" path="res://Scenes/Level.cs" id="1_81xng"]
+[ext_resource type="PackedScene" uid="uid://wps0hpecyxnr" path="res://Scenes/player.tscn" id="2_81xng"]
+[ext_resource type="Texture2D" uid="uid://km4cemwfkvlt" path="res://SpaceShooterRedux/PNG/Effects/star1.png" id="4_0f350"]
+[ext_resource type="Texture2D" uid="uid://b8xpxrdmotcwd" path="res://SpaceShooterRedux/PNG/Effects/star2.png" id="5_8c0lf"]
+[ext_resource type="Texture2D" uid="uid://eoka0qgoxfj5" path="res://SpaceShooterRedux/PNG/Effects/star3.png" id="6_754fn"]
+[ext_resource type="PackedScene" uid="uid://dn1vdyt00eyk8" path="res://Scenes/ui.tscn" id="7_8c0lf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrrly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0f350")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8c0lf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_754fn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrrly"]
+size = Vector2(46, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+
+[node name="Level" type="Node2D" unique_id=415053782]
+script = ExtResource("1_81xng")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=884008145]
+position = Vector2(654.99994, 362.00003)
+scale = Vector2(5.546, 3.215)
+texture = ExtResource("1_6phgx")
+metadata/_edit_lock_ = true
+
+[node name="Stars" type="Node2D" parent="." unique_id=2022780003]
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stars" unique_id=2134409599]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.73727256
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Stars" unique_id=1908001603]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.60319453
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Stars" unique_id=906280340]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.60319453
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Stars" unique_id=807345663]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.60319453
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Stars" unique_id=2098461332]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.60319453
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Stars" unique_id=818731889]
+position = Vector2(52, 43)
+sprite_frames = SubResource("SpriteFrames_mrrly")
+autoplay = "default"
+frame_progress = 0.60319453
+
+[node name="Player" parent="." unique_id=708234310 instance=ExtResource("2_81xng")]
+position = Vector2(542, 275)
+
+[node name="Borders" type="Node2D" parent="." unique_id=952929057]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders" unique_id=2050871902]
+position = Vector2(1299, 361)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" unique_id=1486849116]
+shape = SubResource("RectangleShape2D_mrrly")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders" unique_id=1601557658]
+position = Vector2(-23, 355)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" unique_id=82544507]
+shape = SubResource("RectangleShape2D_mrrly")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders" unique_id=49681832]
+position = Vector2(492, -296)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" unique_id=1471859092]
+position = Vector2(130.99998, 254.99997)
+scale = Vector2(95.41383, 4.217596)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders" unique_id=1119121212]
+position = Vector2(984, -592)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" unique_id=1857538501]
+position = Vector2(-303, 1355.9999)
+scale = Vector2(95.41383, 4.217596)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="MeteorTimer" type="Timer" parent="." unique_id=693628059]
+wait_time = 0.205
+autostart = true
+
+[node name="Meteors" type="Node2D" parent="." unique_id=1113300829]
+metadata/_edit_lock_ = true
+
+[node name="Lasers" type="Node2D" parent="." unique_id=1612343119]
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." unique_id=1737582558 instance=ExtResource("7_8c0lf")]
+
+[connection signal="Laser" from="Player" to="." method="OnPlayerLaser"]
+[connection signal="timeout" from="MeteorTimer" to="." method="OnMeteorTimerTimeout"]
